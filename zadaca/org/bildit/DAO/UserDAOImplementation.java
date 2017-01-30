@@ -103,7 +103,6 @@ public class UserDAOImplementation implements UserDAOInterface{
 			statement.setString(1, name);
 			statement.setInt(2, pass);
 			
-//			createTable();
 			rs = statement.executeQuery();
 
 			if (rs.next()) {
