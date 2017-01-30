@@ -58,22 +58,28 @@ public class Main {
 			switch(option) {
 			case 1:
 				System.out.print("Enter new name: ");
-				String newName = input.nextLine();
-				userDAO.updateName(user, newName);
+				name = input.nextLine();
+				userDAO.updateName(user, name);
+				break;
 			case 2:
 				System.out.print("Enter new pass: ");
-				int newPass = input.nextInt();
-				userDAO.updatePass(user, newPass);
+				pass = input.nextInt();
+				userDAO.updatePass(user, pass);
+				break;
 			case 3:
 				System.out.print("Enter new age: ");
 				int newAge = input.nextInt();
 				userDAO.updatePass(user, newAge);
+				break;
 			case 4:
 				userDAO.printUser(user);
+				break;
 			case 5:
 				active = false;
+				break;
 			}
 			
+			clearIn();
 			user = userDAO.getUser(name, pass);
 		}
 	}
@@ -93,7 +99,7 @@ public class Main {
 					userDAO.addUser(newUser);
 					return;
 				} catch (SQLException e) {
-					System.out.println("user can't be added.");
+					System.out.println("user can't be added." + e.getMessage());
 				}
 			} catch (InputMismatchException e) {
 				System.out.println("Please enter only integers.");

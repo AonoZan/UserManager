@@ -50,7 +50,7 @@ public class UserDAOImplementation implements UserDAOInterface{
 		String sqlString = "UPDATE users SET " + attribute + " = ? WHERE id = ?;";
 		
 		try (
-				PreparedStatement statement = connection.prepareStatement(SELECT_TABLE_SQL + sqlString)){
+				PreparedStatement statement = connection.prepareStatement(sqlString)){
 			
 			statement.setString(1, newValue);
 			statement.setInt(2, id);
@@ -63,7 +63,7 @@ public class UserDAOImplementation implements UserDAOInterface{
 		String sqlString = "UPDATE users SET " + attribute + " = ? WHERE id = ?;";
 		
 		try (
-				PreparedStatement statement = connection.prepareStatement(SELECT_TABLE_SQL + sqlString)){
+				PreparedStatement statement = connection.prepareStatement(sqlString)){
 			
 			statement.setInt(1, newValue);
 			statement.setInt(2, id);
@@ -75,14 +75,14 @@ public class UserDAOImplementation implements UserDAOInterface{
 
 	@Override
 	public void addUser(User user) throws SQLException {
-		String sqlString = "INSERT INTO users VALUES ( ?, ?, ?);";
+		String sqlString = "INSERT INTO users (name, password, age) VALUES ( ?, ?, ?);";
 		
 		try (
-				PreparedStatement statement = connection.prepareStatement(SELECT_TABLE_SQL + sqlString)){
+				PreparedStatement statement = connection.prepareStatement(sqlString)){
 			
 			statement.setString(1, user.getName());
 			statement.setInt(2, user.getPass());
-			statement.setInt(3, user.getPass());
+			statement.setInt(3, user.getAge());
 			
 			statement.executeUpdate();
 			
