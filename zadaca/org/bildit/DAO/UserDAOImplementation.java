@@ -39,7 +39,7 @@ public class UserDAOImplementation implements UserDAOInterface{
 	}
 	@Override
 	public void updatePass(User user, int newPass) throws SQLException {
-		updateInt(user.getId(), "pass", newPass);
+		updateInt(user.getId(), "password", newPass);
 	}
 	@Override
 	public void updateAge(User user, int newAge) throws SQLException {
@@ -92,7 +92,7 @@ public class UserDAOImplementation implements UserDAOInterface{
 
 	@Override
 	public User getUser(String name, int pass) throws SQLException {
-		String sqlQuery = "USE userManager;  SELECT * FROM users WHERE name = ? AND password = ?";
+		String sqlQuery = "SELECT * FROM users WHERE name = ? AND password = ?";
 		
 		ResultSet rs = null;
 		User user = null;
@@ -103,14 +103,14 @@ public class UserDAOImplementation implements UserDAOInterface{
 			statement.setString(1, name);
 			statement.setInt(2, pass);
 			
-			createTable();
+//			createTable();
 			rs = statement.executeQuery();
 
 			if (rs.next()) {
 				user = new User(
 						rs.getInt("id"),
 						rs.getString("name"),
-						rs.getInt("pass"),
+						rs.getInt("password"),
 						rs.getInt("age"));
 				rs.close();
 			}

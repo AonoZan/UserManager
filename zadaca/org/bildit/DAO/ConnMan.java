@@ -12,7 +12,7 @@ public class ConnMan {
 	private static final String NAME = "root";
 	private static final String PASS = "pass1919";
 
-	private static final String CONN = "jdbc:mysql://localhost/";
+	private static final String CONN = "jdbc:mysql://localhost/userManager";
 	
 	private static ConnMan instance = null;
 	private Connection conn = null;
