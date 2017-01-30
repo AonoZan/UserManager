@@ -19,14 +19,14 @@ public class UserDAOImplementation implements UserDAOInterface{
 			  "CREATE DATABASE IF NOT EXISTS userManager;\n"
 			+ "USE userManager;\n"
 			+ "CREATE TABLE IF NOT EXISTS users (\n"
-			+ "  id INT PRIMARY KEY,\n"
+			+ "  id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,\n"
 			+ "  name VARCHAR(80),\n"
 			+ "  password INT(4),\n"
 			+ "  age INT(3)\n"
 			+ ");";
 	
 	
-	private void createTable() throws SQLException {
+	public void createTable() throws SQLException {
 		try (
 				PreparedStatement statement = connection.prepareStatement(SELECT_TABLE_SQL)){
 			statement.executeUpdate();

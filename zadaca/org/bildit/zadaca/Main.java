@@ -33,6 +33,7 @@ public class Main {
 					System.out.println("User doesn't exst or pass is not correct.");
 				} else {
 					userMenu();
+					return;
 				}
 			} catch (SQLException sqle) {
 				System.out.println("Error reading database.");
@@ -43,9 +44,8 @@ public class Main {
 		}
 	}
 	public static void userMenu() throws SQLException{
-		boolean active = true;
 		int option = 0;
-		while(active) {
+		while(true) {
 			System.out.println("Enter option:\n"
 					+ "[1] Change name\n"
 					+ "[2] Change pass\n"
@@ -75,8 +75,7 @@ public class Main {
 				userDAO.printUser(user);
 				break;
 			case 5:
-				active = false;
-				break;
+				return;
 			}
 			
 			clearIn();
@@ -107,12 +106,22 @@ public class Main {
 			}
 		}
 	}
+	public static void createTable() {
+		try {
+			userDAO.createTable();
+		} catch (SQLException e) {
+			System.out.println("Can't create database/table.");
+			System.exit(0);
+		}
+	}
 	public static void clearIn() {
 		input.nextLine();
 	}
 	public static void main(String[] args) {
 		int option = 0;
 		boolean active = true;
+		createTable();
+		
 		System.out.println("Welcome to user database.");
 		
 		while(active) {
